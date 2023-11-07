@@ -32,8 +32,8 @@ img {
 
 .items {
     position: relative;
-    width: 900px;
-    height: 500px;
+    width: 800px;
+    height: 350px;
     margin: 0 auto;
 }
 
@@ -45,9 +45,9 @@ img {
 
 .text {
     position: absolute;
-    right: 30px;
-    bottom: 60px;
-    font-size: 1.2rem;
+    right: 25px;
+    bottom: 50px;
+    font-size: 1.1rem;
     color: white;
     text-align: right;
 }
