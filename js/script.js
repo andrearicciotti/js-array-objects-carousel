@@ -27,18 +27,101 @@ const sliderElems = [
         caption: "Loki strikes back dolor sit amet, consectetur adipisicing elit. Dicta iusto."
     }
 ]
-console.log(sliderElems);
+// console.log(sliderElems);
 
+
+// LOGICA DEL PROGRAMMA
 const wrapper = document.querySelector('.container');
 
 const sliderItems = sliderElementInDOM(sliderElems);
-console.log(sliderItems);
+// console.log(sliderItems);
 
 wrapper.append(sliderItems);
 
+const items = document.querySelectorAll('.item');
+console.log(items, items[0]);
+
+items[0].classList.add('active');
+
+const prev = document.createElement('div');
+prev.classList.add('prev');
+sliderItems.append(prev);
+
+const next = document.createElement('div');
+next.classList.add('next');
+sliderItems.append(next);
+
+prev.addEventListener("click", handlePrevious)
+next.addEventListener("click", handleNext)
+
+let curPosition = 0;
+
+function handleNext() {
+
+    console.log(this);
+    for (let i = curPosition; i < items.length; i++) {
+
+        const curItem = items[i];
+
+        if (curItem.classList == "item active" && curItem == items[4]) {
+
+            const nextItem = items[0];
+
+            curItem.classList.remove('active');
+            nextItem.classList.add('active');
+
+            curPosition = 0;
+            break
+        }
+
+        else if (curItem.classList == "item active") {
+
+            const nextItem = items[i + 1];
+
+            curItem.classList.remove('active');
+            nextItem.classList.add('active');
+
+            ++curPosition;
+            break
+
+        }
+    }
+
+}
 
 
+function handlePrevious() {
 
+    console.log(this);
+    for (let i = curPosition; i < items.length; i--) {
+
+        const curItem = items[i];
+
+        if (curItem.classList == "item active" && curItem == items[0]) {
+
+            const prevItem = items[4];
+
+            curItem.classList.remove('active');
+            prevItem.classList.add('active');
+
+            curPosition = 4;
+            break
+        }
+
+        else if (curItem.classList == "item active") {
+
+            const prevItem = items[i - 1];
+
+            curItem.classList.remove('active');
+            prevItem.classList.add('active');
+
+            --curPosition;
+            break
+
+        }
+    }
+
+}
 
 
 /**
@@ -51,11 +134,11 @@ function sliderElementInDOM(array) {
     let result = "";
 
     const items = document.querySelector('.items');
-    console.log(items);
+    // console.log(items);
 
     array.forEach((curElem) => {
         result += `
-        <div class="item active">
+        <div class="item">
             <img src="${curElem.image}" alt="">
             <div class="text">
                 <h3>${curElem.title}</h3>
@@ -72,49 +155,3 @@ function sliderElementInDOM(array) {
 
 }
 
-// const curImage = curElem.image;
-// const imageItem = doceument.createElement('img');
-// imageItem.src = curImage;
-
-// let result = `
-
-// <div class="item active">
-//     <img src="./img/01.webp" alt="">
-//         <div class="text">
-//             <h3>Marvel's Spiderman Miles Morales</h3>
-//             <p>Spiderman dolor sit amet, consectetur adipisicing elit. Dicta iusto.</p>
-//         </div>
-// </div>
-
-// <div class="item">
-//     <img src="./img/02.webp" alt="">
-//     <div class="text">
-//         <h3>Ratchet and Clank 4 is coming</h3>
-//         <p>Ratchet and Clank dolor sit amet, consectetur adipisicing elit. Dicta iusto.</p>
-//     </div>
-// </div>
-
-// <div class="item">
-//     <img src="./img/03.webp" alt="">
-//     <div class="text">
-//         <h3>Fortnite new season</h3>
-//         <p>Fortnite dolor sit amet, consectetur adipisicing elit. Dicta iusto.</p>
-//     </div>
-// </div>
-
-// <div class="item">
-//     <img src="./img/04.webp" alt="">
-//     <div class="text">
-//         <h3>The cat is on the table</h3>
-//         <p>The cat dolor sit amet, consectetur adipisicing elit. Dicta iusto.</p>
-//     </div>
-// </div>
-
-// <div class="item">
-//     <img src="./img/05.webp" alt="">
-//     <div class="text">
-//         <h3>Avengers endendgame?</h3>
-//         <p>Loki strikes back dolor sit amet, consectetur adipisicing elit. Dicta iusto.</p>
-//     </div>
-// </div>
-// `;
