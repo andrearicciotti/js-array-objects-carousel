@@ -32,9 +32,8 @@ img {
 
 .items {
     position: relative;
-    width: 800px;
-    height: 350px;
-    margin: 0 auto;
+    width: 700px;
+    height: 300px;
 }
 
 .item {
